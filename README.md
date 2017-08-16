@@ -2,9 +2,9 @@
 
 artificial intelligence and computer vision international student [hackathon](http://visionhack.misis.ru/)
 
-![light](088.030.015.png)
+![light](data/088.030.015.png)
 
-![green](green.png)
-![green_grad](green_grad.png)
-![red](red.png)
-![red_grad](red_grad.png)
+![green](data/green.png)
+![green_grad](data/green_grad.png)
+![red](data/red.png)
+![red_grad](data/red_grad.png)
