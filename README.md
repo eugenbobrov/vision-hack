@@ -1,6 +1,6 @@
 # vision-hack
 
-artificial intelligence and computer vision international student hackathon
+artificial intelligence and computer vision international student [hackathon](http://visionhack.misis.ru/)
 
 ![light](088.030.015.png)
 
