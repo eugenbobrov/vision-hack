@@ -8,10 +8,8 @@ do
 video=${rawvideo%.left.avi}
 video=${video/akn./}
 video=${video/set/}
-ffmpeg -i $rawvideo -s 960x540 $video.avi
 mkdir $video
-ffmpeg -i $video.avi -vf crop=960:360:0:0 $video.mod.avi
+ffmpeg -i $rawvideo -vf crop=960:720:960:0 $video.avi
+ffmpeg -i $video.avi $video/%03d.${video/train\//}.png
 rm $video.avi
-ffmpeg -i $video.mod.avi $video/%03d.${video/train\//}.png
-rm $video.mod.avi
 done
