@@ -2,8 +2,11 @@
 import os
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.patches import Rectangle
-from skimage.io import imread_collection
+from matplotlib.patches import Rectangle, Circle
+from skimage.io import imread_collection, imshow
+from skimage.feature import canny
+from skimage.color import rgb2gray
+from skimage.transform import hough_circle, hough_circle_peaks
 
 
 def make_sequence(directory, color):
@@ -19,7 +22,6 @@ def make_sequence(directory, color):
 
 
 def draw_images(directory, label):
-    plt.style.use('classic')
     path1 = 'train/' + directory + '/'
     path2 = '.' + directory + '.png'
     images = imread_collection([
@@ -31,13 +33,33 @@ def draw_images(directory, label):
 
 
 def draw_sequence(data, label, title):
-    plt.style.use('ggplot')
     plt.plot(data)
     plt.title(title)
     patch = Rectangle((label - 6, data.min()), 12,
         data.max() - data.min(), fill=False, color='black')
     plt.axes().add_patch(patch)
     plt.show()
+
+
+def draw_circles(directory):
+    path = 'train/' + directory + '/'
+    names = [path + name for name in sorted(os.listdir(path))]
+    data = imread_collection(names).concatenate()
+
+    for j, frame in enumerate(data[115:]):
+        edge = canny(rgb2gray(frame), sigma=2, low_threshold=0.2)
+        edge = (edge*255).astype('uint8')
+        imshow(edge, cmap='gray'); plt.show()
+
+        imshow(frame)
+        hspace = hough_circle(edge, range(10, 30))
+        accums, cx, cy, radii = hough_circle_peaks(
+                hspace, range(10, 30), total_num_peaks=40)
+        for x, y, r in zip(cx, cy, radii):
+            patch = Circle((x, y), r, fill=True, color='black')
+            plt.axes().add_patch(patch)
+        plt.show()
+        print(j)
 
 
 if __name__=='__main__':
