@@ -4,8 +4,8 @@ artificial intelligence and computer vision international student [hackathon](ht
 
 ![light](data/088.030.015.png)
 
-![green_grad](data/green_grad.png)
-![red_grad](data/red_grad.png)
+![green_grad](data/green.png)
+![red_grad](data/red.png)
 
 ![grad](data/grad.png)
 ![circle](data/circle.png)
